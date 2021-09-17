@@ -1,38 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct autoAdatok{
-    char cars[3][5];
-};
-
 int main()
 {
-    adatok();
+    autoAdatok();
     return 0;
 }
 
-void adatok(){
-    int i, j;
+
+void autoAdatok(){
     FILE *fp;
-    struct autoAdatok cars[3][5];
+    char ch;
+    char cars;
+    char kocsiTomb[20];
+    int i, j;
 
-    for (i = 0; i< '\0'; i++){
-        for(j = 0; j < '\0'; j++){
-                printf("Adja meg az autot:");
-                scanf("%s", &cars[i][j]);
 
-        }
+    /*fp = fopen("autok.txt","w");
+
+    while((ch=getchar()) != '#'){
+        putc(ch, fp);
     }
 
-    for (i = 0; i< '\0'; i++){
-        for(j = 0; j < '\0'; j++){
+    fclose(fp);*/
 
-                printf("%s", cars[i][j]);
+    int end, loop, line;
+    char str[512];
 
+    printf("Adja meg a sor szamat: ");
+    scanf("%d", &line);
 
+    fp = fopen("autok.txt","r");
+
+    for(end = loop = 0;loop<line;loop++){
+        if(0==fgets(str, sizeof(str), fp)){//include '\n'
+            end = 1;//can't input (EOF)
+            break;
         }
     }
+    if(!end)
+        printf("\n%d.Sor: %s\n", line, str);
+    fclose(fp);
+
 
     return 0;
-
 }
