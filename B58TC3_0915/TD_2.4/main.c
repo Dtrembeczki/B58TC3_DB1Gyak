@@ -1,47 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct autoData{
+    char plate[6];
+    char tipus[30];
+    double ar;
+};
+
 int main()
 {
-    autoAdatok();
+    //adat_hozzad();
+
+    adat_lekerdez(2);
+
     return 0;
 }
 
-
-void autoAdatok(){
+void adat_hozzad(){
+    struct autoData autok[5];
     FILE *fp;
-    char ch;
-    char cars;
-    char kocsiTomb[20];
-    int i, j;
+    int i;
 
+    fp = fopen("autok.bin","wb");
 
-    /*fp = fopen("autok.txt","w");
-
-    while((ch=getchar()) != '#'){
-        putc(ch, fp);
+    for(i = 0; i<5; i++){
+        printf("Rendszam: ");
+        scanf("%s", &autok[i].plate);
+        printf("Tipus: ");
+        scanf("%s", &autok[i].tipus);
+        printf("Ar: ");
+        scanf("%d", &autok[i].ar);
     }
 
-    fclose(fp);*/
-
-    int end, loop, line;
-    char str[512];
-
-    printf("Adja meg a sor szamat: ");
-    scanf("%d", &line);
-
-    fp = fopen("autok.txt","r");
-
-    for(end = loop = 0;loop<line;loop++){
-        if(0==fgets(str, sizeof(str), fp)){//include '\n'
-            end = 1;//can't input (EOF)
-            break;
-        }
+    for(i=0;i<5;i++){
+        fwrite(&autok[i], sizeof(struct autoData), 1, fp);
     }
-    if(!end)
-        printf("\n%d.Sor: %s\n", line, str);
+
     fclose(fp);
 
+}
 
-    return 0;
+void adat_lekerdez(int sor){
+    FILE *fp;
+    struct autoData autok;
+
+    fp = fopen("autok.bin","rb");
+
+    fseek(fp,(sor-1)*sizeof(struct autoData),0);
+    fread(&autok, sizeof(struct autoData), 1, fp);
+
+    printf("Rendszam: %s \n", autok.plate);
+    printf("Tipus: %s \n",autok.tipus);
+    printf("Ar: %s \n", autok.ar);
+
+    fclose(fp);
 }
