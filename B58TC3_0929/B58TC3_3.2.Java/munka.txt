@@ -1,0 +1,7 @@
+0.szam 112
+1.szam 252
+2.szam 911
+3.szam 452
+4.szam 1
+
+Osszeg: 1728
