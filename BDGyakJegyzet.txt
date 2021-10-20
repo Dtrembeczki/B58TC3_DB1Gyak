@@ -1,0 +1,42 @@
+Relációs algebra:
+
+Két fõ mûvelettípus: egy operandusú, két operandusú
+
+Szelekció: Lekérdezés egy táblázatból
+jele: szigma
+
+Projekció: olyan feltétl megadása ahol az oszlopokra szûkítjük a keresést
+jele: pí
+
+Pl.: autók adatai közül az autó színét és típusát kérdezzük le
+
+Szelekció és projekció:
+Keverjük a két mûveletet: oszlop és a megadott feltételeket kérdezzük le
+Példa: piros autoknak a rendszám oszlopát
+
+Aggregációs fgk:
+COUNT - elõfordulások darabszáma 
+SUM 
+MIN
+MAX
+AVG
+
+Csoportképzés és aggregáció: Relációk rekordjait csoportokba rendezi és minden csoportra egy összesítõ rekordot ad ki
+
+Kiterjesztés -> alkalmazható projekcióban is 
+Példa: autok rendszáma lóerõ és teljesítmény adó alapján
+
+Join (két op): két reláció rekordjainak párosítása
+Natural join: alapjoin 
+
+
+SQL lekérdezõ nyelv:
+
+-Adat definiáló utasítások
+-Adat manipulációs utasítások
+-Lekérdezõ
+-Védelem
+-Tranzakció kezelés
+
+
+C:\xampp\mysql\bin>mysql.exe -u root
