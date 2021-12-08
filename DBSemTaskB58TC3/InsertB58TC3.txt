@@ -1,0 +1,6 @@
+INSERT INTO szerep (`film_id`, `szereplo_id`) VALUES (1, 7), (1, 8), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (19, 10), (19, 11), (20, 10), (20, 11), (21, 10), (21, 11), (22, 10), (22, 11);
+INSERT INTO dij (d_id,dij_nev) VALUES (’Oscar’), (’Golden Globe’), (’Cannes’);
+INSERT INTO szinesz (nev, szul_ev, halal_ev, nem) VALUES (Daisy Ridley, 1992, NULL, N);
+INSERT INTO szinesz (`nev`, `szul_ev`, `halal_ev`, `nem`) VALUES ('Ian McKellen', 1939, NULL, 'F'), ('Elijah Wood', 1981, NULL, 'F'), ('Viggo Mortensen', 1958, NULL, 'F'), ('Miranda Otto', 1967, NULL, 'N'), ('Liv Tyler', 1977, NULL, 'N');
+INSERT INTO `rendezok`.`film_idezetek` (`idezet`, `film_id`) VALUES ('Ott rejlik a reményünk, ahol a legnagyobb félelmünk is.', 24), ('Az erő az, ha valóban indokolt lenne, hogy öljünk, de nem tesszük meg. (...) A nagy uralkodók ilyenek voltak. A tolvajt a császár elé vezették. Az a földre vetette magát előtte, és bocsánatért esedezett, hisz tudta, hogy halál vár rá. Ám a császár megbocsátott neki. (...) Ez az erő.', 10), ('Semmit sem szabad elkapkodni. A türelem a legelső, amit egy jó üzletember megtanul.', 16);;
+INSERT INTO `rendezok`.`szerep` (`film_id`, `szereplo_id`) VALUES (6, 24), (18, 24), (17, 24), (4, 23), (5, 23), (29, 23), (30, 23), (31, 23);;

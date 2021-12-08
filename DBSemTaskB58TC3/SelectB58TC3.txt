@@ -1,0 +1,39 @@
+1.	Azoknak a színészeknek a neve és haláluk éve, akik már nem lehetnek köztünk:
+SELECT `nev`, halal_ev FROM `szinesz` WHERE halal_ev != 'NULL';
+П nev, halal_ev (σhalal_ev != ’NULL’(szinesz))
+
+2.	Azok a rendezők, akiket Stevenek és Ronnak hívnak:
+SELECT `nev` FROM `rendezo` WHERE nev LIKE '%steve%' UNION SELECT nev FROM rendezo WHERE nev LIKE 'ron%';
+Пnev (σnev = ’%steve%’ (rendezo) U Пnev(σnev =’ron%’(rendezo))
+
+3.	1960 után született rendezők filmjei
+SELECT rendezo.nev,film.cim FROM rendezo JOIN film ON rendezo.id = film.r_id WHERE rendezo.szul_ev > 1960;
+Пrendezo.nev,film.cim (σrendezo.szul_ev > 1960 (rendezo id =r_id film))
+
+4.	Átlagnál hosszabb filmek és benne szereplő színészek és a film rendezője
+SELECT rendezo.nev, film.cim, film.hossz, szinesz.nev FROM rendezo JOIN film ON film.r_id = rendezo.id JOIN szerep ON szerep.film_id = film.film_id JOIN szinesz ON szerep.szereplo_id = szinesz.id WHERE film.hossz > (SELECT AVG(hossz) FROM film);
+Пrendezo.nev,film.cim,film.hossz, szinesz.nev (σ Γavg(hossz) < film.hossz (rendezo id =r_id film, film film_id =film_id szerep, szerep szereplo_id = id szinesz))
+
+5.	A Gyűrűk ura szereplőgárdájának legidősebb tagja:
+SELECT nev FROM szinesz WHERE szul_ev = (SELECT MIN(szinesz.szul_ev) FROM szinesz JOIN szerep ON szinesz.id = szerep.szereplo_id JOIN film ON film.film_id = szerep.film_id AND film.cim LIKE '%gyűrűk u%');
+Пnev (σΓ szul_ev=MIN(szul_ev) & film_cim LIKE ’ %gyűrűk u%’(szinesz  id=szereplo_id szerepfilm_id = film_id film))
+
+6.	SELECT nev FROM rendezo WHERE rendezo.szul_ev > 1950;
+SELECT nev FROM rendezo WHERE szul_ev > 1950;
+Пnev (σszul_ev >1950 (rendezo))
+
+7.	A gyűrűk ura sorozat hossza összesen
+SELECT SUM(hossz) AS 'Gyuruk ura hossza' FROM film WHERE cim LIKE '%gyűrűk%';
+Γavg(hossz) (σcim like  '%gyűrűk%'(film))
+
+8.	A legrövidebb film címe és rendezője
+SELECT rendezo.nev, film.cim FROM rendezo JOIN film ON film.r_id = rendezo.id where film.hossz = (SELECT MIN(hossz) FROM film);
+Пrendezo.nev, film.cim (σfilm.hossz = (Γmin(hossz))(rendezoid =r_id film ))
+
+9.	Azon rendezők nevei, akiknek nincs rögzítve elnyert díj és a személyek száma
+SELECT rendezo.nev FROM rendezo LEFT JOIN kapott_dij ON kapott_dij.rendezo_id = rendezo.id WHERE kapott_dij.dij_id IS NULL AND rendezo.halal_ev = 'null' UNION SELECT COUNT(rendezo.id) AS 'dijat nem kapott rendezok' FROM rendezo LEFT JOIN kapott_dij ON kapott_dij.rendezo_id = rendezo.id WHERE kapott_dij.dij_id IS NULL AND rendezo.halal_ev = 'null';
+П rendezo.nev(σ kapott_dij.dij_id IS NULL AND rendezo.halal_ev = 'null'(rendezo rendezo.id = kapott_dij.rendezo_id kapott_dij))
+
+10.	Azok a színészek, akik rendezőként is szerepelnek az adatbázisban egy filmben
+SELECT rendezo.nev, film.cim FROM rendezo JOIN film ON rendezo.id = film.r_id JOIN szerep ON szerep.film_id = film.film_id WHERE EXISTS(select nev from szinesz WHERE szinesz.nev = rendezo.nev);
+П rendezo.nev, film.cim (σexists(П nev(σszinesz.nev = rendezo.nev)(szinesz))(rendezorendezo.id = film.film_id film))

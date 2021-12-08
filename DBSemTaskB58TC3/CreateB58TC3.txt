@@ -1,0 +1,46 @@
+CREATE TABLE rendezo (
+ id int(6) AUTO_INCREMENT,
+ nev varchar(200) NOT NULL,
+ szul_ev int(4) NOT NULL,
+ halal_ev int(4),
+ PRIMARY KEY (id) );
+CREATE TABLE film (
+ film_id int(11) AUTO_INCREMENT,
+ cim varchar(200) NOT NULL,
+ kategoria varchar(50) NOT NULL,
+ hossz int(4) NOT NULL,
+ kiadas_eve int(4) NOT NULL,
+ r_id int(11) NOT NULL,
+ PRIMARY KEY (film_id),
+ FOREIGN KEY r_id REFERENCES rendezo(id) );
+CREATE TABLE szinesz (
+ id int(11) AUTO_INCREMENT,
+ nev varchar(200) NOT NULL,
+ szul_ev int(4) NOT NULL,
+ halal_ev int(4),
+ nem char(1),
+ PRIMARY KEY (id) );
+CREATE TABLE szerep (
+ film_id int(11),
+ szereplo_id int(11),
+ KEY film_id (film_id),
+ KEY szereplo_id (szereplo_id),
+ FOREIGN KEY (film_id) REFERENCES film (film_id),
+ FOREIGN KEY (szereplo_id) REFERENCES szinesz (id) );
+CREATE TABLE dij (
+ d_id int(11) NOT NULL AUTO_INCREMENT,
+ dij_nev varchar(20) NOT NULL,
+ PRIMARY KEY (d_id)
+CREATE TABLE kapott_dij (
+ dij_id int(11) DEFAULT NULL,
+ rendezo_id int(11) DEFAULT NULL,
+ szinesz_id int(11) DEFAULT NULL,
+ FOREIGN KEY (dij_id) REFERENCES dij (d_id),
+ FOREIGN KEY (rendezo_id) REFERENCES rendezo (id),
+ FOREIGN KEY (szinesz_id) REFERENCES szinesz (id), );
+CREATE TABLE `film_idezetek` (
+  `idezet_id` int(11) NOT NULL AUTO_INCREMENT,
+  `idezet` varchar(1000) DEFAULT NULL,
+  `film_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idezet_id`)
+)

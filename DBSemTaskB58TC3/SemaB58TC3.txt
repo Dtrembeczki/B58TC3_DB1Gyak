@@ -1,0 +1,7 @@
+rendezo [id, nev, szuletesi_eve, halal_eve]
+film [film_id, cim, hossz kategoria, megjelenes_eve, r_id]
+szerep [film_id, sz_id]
+szinesz[sz_id, nev, szuletesi_eve, halal_eve, nem]
+dij [d_id, dij_nev]
+kapott_dij [rendezo_id, szinesz_id, dij_id, datum, kategoria]
+film_idezet [idezet_id, idezet, film_id]
