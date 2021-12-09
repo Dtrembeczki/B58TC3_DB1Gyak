@@ -1,0 +1,5 @@
+INSERT INTO oktato VALUES(123, 'Kiss Ilona', 'Fizika'),(1331, 'Vicc Elek', 'Informatika');
+INSERT INTO targy VALUES(1001, 5, 'Matematika I', ),(2002, 3, 'Fizika II');
+INSERT INTO oktat VALUES(1001, 123);
+INSERT INTO hallgato VALUES(954001, 'Gipsz Jakab', 'INF1B2', 1997-05-01, 24, 1201, 'Budapest', 'Virag', 4);
+INSERT INTO hallgat VALUES(954001, 1001, 2, 3);

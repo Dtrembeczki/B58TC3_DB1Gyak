@@ -1,0 +1,5 @@
+oktato [neptunkód, név, tanszék]
+oktat [neptunkod, kod]
+targy [kod, kredit,megnevezes]
+hallgat [félév, vizsgajegy, kód, neptunkód]
+hallgató [neptunkód, név, tankor, szul.d, eletkor, irsz, varos, utca, hsz]

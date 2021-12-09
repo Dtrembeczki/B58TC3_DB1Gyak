@@ -1,0 +1,5 @@
+CREATE TABLE oktato (neptunkod INT PRIMARY KEY, nev VARCHAR (50) NOT NULL, tanszek VARCHAR (50) NOT NULL );
+CREATE TABLE targy (kod INT PRIMARY KEY, kredit INT, megnevezes VARCHAR (50) NOT NULL);
+CREATE TABLE oktat (kod INT, neptunkod INT, FOREIGN KEY (kod) REFERENCES targy(kod), FOREIGN KEY (neptunkod) REFERENCES oktato(neptunkod));
+CREATE TABLE hallgato (neptunkod INT PRIMARY KEY, nev VARCHAR (50) NOT NULL, tankor VARCHAR (5), szul_datum DATE, eletkor int, irsz int, varos VARCHAR (100), utca VARCHAR (100), hsz INT);
+CREATE TABLE hallgat (neptunkod INT, FOREIGN KEY (neptunkod) REFERENCES hallgato(neptunkod), kod INT, FOREIGN KEY (kod) REFERENCES targy(kod), felev int, vizsgajegy INT);
